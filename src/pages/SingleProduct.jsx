@@ -1,0 +1,65 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getProducts } from "../services/apiProducts";
+export default function SingleProducts() {
+  const { productId } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  useEffect(function () {
+    setTimeout(() => {
+      getProducts().then((data) => {
+        setProducts(data);
+      });
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
+  const myProduct = products.find((item) => item.id === +productId);
+
+  return (
+    <>
+      {isLoading ? (
+        <div className="flex text-center justify-center items-center h-[100vh]">
+          <p className="loader"></p>
+        </div>
+      ) : (
+        <section className="mx-auto max-w-5xl">
+          {myProduct && (
+            <div>
+              <div className="mx-4 my-5 flex flex-col items-center rounded-md border-2  p-2  md:flex-row md:justify-around">
+                <div className="flex flex-col items-center  md:w-[50%]">
+                  <img src={myProduct.img} alt="" />
+                </div>
+                <div className="flex flex-col items-center justify-center md:w-[50%]">
+                  <h4 className="my-2 text-center text-sm font-semibold text-stone-600">
+                    {myProduct.title}
+                  </h4>
+
+                  <p className="my-3 h-80 overflow-scroll overflow-x-hidden p-1 text-xs">
+                    {myProduct.description}
+                  </p>
+
+                  {myProduct.stock && (
+                    <p className="my-2 text-sm">
+                      قیمت : {myProduct.price} تومان
+                    </p>
+                  )}
+
+                  {myProduct.stock && (
+                    <button className="mb-3 rounded-md bg-green-500 px-5 py-1 text-sm text-stone-50">
+                      افزودن به سبد
+                    </button>
+                  )}
+                  {!myProduct.stock && (
+                    <p className="text-red-500">موجود نیست</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+      )}
+    </>
+  );
+}
