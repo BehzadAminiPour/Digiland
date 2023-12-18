@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 import { FaShoppingCart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 export default function Navbar() {
+  const { amount } = useSelector((store) => store.cart);
   return (
     <nav className="mx-auto mb-3 flex max-w-5xl justify-between border-b border-stone-200 bg-slate-50 py-2">
       <div className="mr-5 flex items-center justify-center gap-7 text-stone-600 sm:mr-10 sm:flex sm:gap-16">
@@ -16,7 +18,9 @@ export default function Navbar() {
         </Link>
         <Link to="/cart" className="flex flex-col items-center">
           <FaShoppingCart size={24} />
-          <p className="text-xs">سبد</p>
+          <p className="text-xs">
+            سبد <span>{amount}</span>
+          </p>
         </Link>
       </div>
       <div className="ml-2 flex items-center justify-center">

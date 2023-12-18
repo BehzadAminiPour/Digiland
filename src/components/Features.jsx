@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../services/apiProducts";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchItems } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 export default function Features() {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(function () {
-    setTimeout(() => {
-      getProducts().then((data) => setProducts(data));
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-  const newiest = products.filter((item) => item.new === true);
+  const { cartItems, isLoading } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, [dispatch]);
+
+  const newiest = cartItems.filter((item) => item.new === true);
 
   return (
     <>

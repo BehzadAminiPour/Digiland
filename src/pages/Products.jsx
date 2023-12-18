@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getProducts } from "../services/apiProducts";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchItems } from "../features/cart/cartSlice";
 
 export default function Products() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-  useEffect(function () {
-    setTimeout(() => {
-      getProducts().then((data) => setProducts(data));
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+  const { cartItems, isLoading } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, [dispatch]);
   return (
     <>
       {isLoading ? (
@@ -46,7 +45,7 @@ export default function Products() {
             <hr className="mt-3" />
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
+            {cartItems.map((product) => (
               <Link
                 to={`/products/${product.id}`}
                 key={product.id}

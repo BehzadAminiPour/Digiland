@@ -1,21 +1,18 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getProducts } from "../services/apiProducts";
+import { useEffect} from "react";
+import {useSelector , useDispatch} from 'react-redux'
+import { fetchItems } from "../features/cart/cartSlice";
 export default function SingleProducts() {
   const { productId } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+  const {cartItems,isLoading}=useSelector(store=>store.cart)
+  const dispatch = useDispatch()
+
 
   useEffect(function () {
-    setTimeout(() => {
-      getProducts().then((data) => {
-        setProducts(data);
-      });
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+   dispatch(fetchItems())
+  }, [dispatch]);
 
-  const myProduct = products.find((item) => item.id === +productId);
+  const myProduct = cartItems.find((item) => item.id === +productId);
 
   return (
     <>
