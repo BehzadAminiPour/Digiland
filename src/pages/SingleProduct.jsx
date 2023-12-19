@@ -1,23 +1,30 @@
-import { useParams } from "react-router-dom";
-import { useEffect} from "react";
-import {useSelector , useDispatch} from 'react-redux'
-import { fetchItems } from "../features/cart/cartSlice";
+import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, fetchItems } from "../features/cart/cartSlice";
 export default function SingleProducts() {
   const { productId } = useParams();
-  const {cartItems,isLoading}=useSelector(store=>store.cart)
-  const dispatch = useDispatch()
+  const { cartItems, isLoading } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
+ 
 
-
-  useEffect(function () {
-   dispatch(fetchItems())
-  }, [dispatch]);
+  useEffect(
+    function () {
+      dispatch(fetchItems());
+    },
+    [dispatch],
+  );
 
   const myProduct = cartItems.find((item) => item.id === +productId);
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(myProduct.id));
+  
+  };
   return (
     <>
       {isLoading ? (
-        <div className="flex text-center justify-center items-center h-[100vh]">
+        <div className="flex h-[100vh] items-center justify-center text-center">
           <p className="loader"></p>
         </div>
       ) : (
@@ -44,9 +51,12 @@ export default function SingleProducts() {
                   )}
 
                   {myProduct.stock && (
-                    <button className="mb-3 rounded-md bg-green-500 px-5 py-1 text-sm text-stone-50">
+                    <Link to="/cart"
+                      onClick={handleAddToCart}
+                      className="mb-3 rounded-md bg-green-500 px-5 py-1 text-sm text-stone-50"
+                    >
                       افزودن به سبد
-                    </button>
+                    </Link>
                   )}
                   {!myProduct.stock && (
                     <p className="text-red-500">موجود نیست</p>

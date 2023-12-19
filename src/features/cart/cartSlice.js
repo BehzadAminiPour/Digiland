@@ -17,21 +17,27 @@ export const fetchItems = createAsyncThunk(
       console.log(error);
       throw new Error("Products could not be loaded");
     }
-    return data ;
+    return data;
   },
 );
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
-
+  reducers: {
+    addToCart: (state, { payload }) => {
+      state.amount = state.amount + 1;
+      // console.log(payload);
+      state.cartItems = state.cartItems.filter((item) => item.id === payload);
+    
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchItems.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
-      
         state.isLoading = false;
         state.cartItems = action.payload;
       })
@@ -41,5 +47,5 @@ const cartSlice = createSlice({
   },
 });
 // console.log(cartSlice);
-
+export const { addToCart } = cartSlice.actions;
 export default cartSlice.reducer;
