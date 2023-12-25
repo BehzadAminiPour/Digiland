@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import axios from 'axios'
+
 import supabase from "../../services/supabase";
 
 const initialState = {
@@ -25,11 +25,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, { payload }) => {
-      state.amount = state.amount + 1;
-      // console.log(payload);
-      state.cartItems = state.cartItems.filter((item) => item.id === payload);
-    
+    addToCart: (state, action) => {
+      state.amount += 1;
+      let newProduct = action.payload
+      state.cartItems.push(newProduct)
     },
   },
   extraReducers: (builder) => {
@@ -46,6 +45,6 @@ const cartSlice = createSlice({
       });
   },
 });
-// console.log(cartSlice);
+
 export const { addToCart } = cartSlice.actions;
 export default cartSlice.reducer;

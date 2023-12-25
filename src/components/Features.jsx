@@ -1,20 +1,20 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchItems } from "../features/cart/cartSlice";
-import { Link } from "react-router-dom";
+// import { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchItems } from "../features/cart/cartSlice";
+// import { Link } from "react-router-dom";
 export default function Features() {
-  const { cartItems, isLoading } = useSelector((store) => store.cart);
-  const dispatch = useDispatch();
+  // const { cartItems, isLoading } = useSelector((store) => store.cart);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchItems());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchItems());
+  // }, [dispatch]);
 
-  const newiest = cartItems.filter((item) => item.new === true);
+  // const newiest = cartItems.filter((item) => item.new === true);
 
   return (
     <>
-      {isLoading ? (
+      {/* {isLoading ? (
         <div className="flex h-[100vh] items-center justify-center text-center">
           <p className="loader"></p>
         </div>
@@ -46,7 +46,8 @@ export default function Features() {
             ))}
           </div>
         </section>
-      )}
+      )} */}
+      <p>features</p>
     </>
   );
 }
