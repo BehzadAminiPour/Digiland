@@ -1,15 +1,24 @@
+/* eslint-disable react-refresh/only-export-components */
 import Faq from "../components/Faq";
-import Features from "../components/Features";
-import Hero from "../components/Hero";
-import Services from "../components/Services";
 
-export default function Home() {
+import { Hero } from "../components";
+import Services from "../components/Services";
+import { getProducts } from "../services/apiProducts";
+import FeaturedProduct from "../components/FeaturedProduct";
+
+export const loader = async () => {
+  const products = await getProducts();
+  const featuredProduct = products.filter((product) => product.new === true);
+  return {featuredProduct};
+};
+
+export default function Landing() {
   return (
-    <main className="max-w-5xl mx-auto">
+    <>
       <Hero />
-      <Features/>
-      <Services/>
-      <Faq/>
-    </main>
+      <FeaturedProduct />
+      <Services />
+      <Faq />
+    </>
   );
 }

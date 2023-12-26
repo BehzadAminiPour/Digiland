@@ -1,8 +1,10 @@
+import ProductsGrid from "./ProductsGrid";
+import SectionTitle from "./SectionTitle";
 // import { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchItems } from "../features/cart/cartSlice";
 // import { Link } from "react-router-dom";
-export default function Features() {
+export default function FeaturedProduct() {
   // const { cartItems, isLoading } = useSelector((store) => store.cart);
   // const dispatch = useDispatch();
 
@@ -14,6 +16,10 @@ export default function Features() {
 
   return (
     <>
+      <div className="pt-24">
+        <SectionTitle text="جدیدترین محصولات" />
+        <ProductsGrid />
+      </div>
       {/* {isLoading ? (
         <div className="flex h-[100vh] items-center justify-center text-center">
           <p className="loader"></p>
@@ -47,7 +53,6 @@ export default function Features() {
           </div>
         </section>
       )} */}
-      <p>features</p>
     </>
   );
 }
