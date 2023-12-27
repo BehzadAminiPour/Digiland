@@ -1,11 +1,11 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 export default function ProductsGrid() {
-  const { featuredProduct } = useLoaderData();
+  const { products} = useLoaderData();
  
   return (
     <div className="grid gap-4 pt-12 md:grid-cols-2 lg:grid-cols-3">
-      {featuredProduct.map((product) => {
+      {products.map((product) => {
         const { title, price, img } = product;
 
         return (

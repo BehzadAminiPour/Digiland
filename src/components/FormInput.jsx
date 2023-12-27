@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 
-export default function FormInput({type,label,name,defaultValue}) {
+export default function FormInput({type,label,name,defaultValue,size}) {
   return (
     <div className='form-control'>
     <label htmlFor={name} className='label'>
@@ -11,7 +11,7 @@ export default function FormInput({type,label,name,defaultValue}) {
       type={type}
       name={name}
       defaultValue={defaultValue}
-      className={`input input-bordered`}
+      className={`input input-bordered ${size}`}
     />
   </div>
   )
