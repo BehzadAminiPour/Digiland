@@ -1,20 +1,22 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Filters,  ProductsContainer } from "../components";
+import { Filters, ProductsContainer } from "../components";
 import { getProducts } from "../services/apiProducts";
 
 //Loader
-export const loader = async () => {
-  const products = await getProducts()
-  return {products}
+export const loader = async ({ request }) => {
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+
+  const products = await getProducts();
+  return { products , params };
 };
 
 export default function Products() {
-  
   return (
     <>
       <Filters />
       <ProductsContainer />
-    
     </>
   );
 }

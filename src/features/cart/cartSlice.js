@@ -1,50 +1,26 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-unused-vars */
+import { createSlice } from "@reduxjs/toolkit";
+// import {toast} from 'react-toastify';
 
-import supabase from "../../services/supabase";
-
-const initialState = {
+const defaultState = {
   cartItems: [],
-  amount: 0,
-  total: 0,
-  isLoading: true,
+  numItemsInCart: 0,
+  cartTotal: 0,
+  orderTotal: 0,
 };
-
-export const fetchItems = createAsyncThunk(
-  "cart/fetchItems",
-  async function () {
-    let { data, error } = await supabase.from("Products").select("*");
-    if (error) {
-      console.log(error);
-      throw new Error("Products could not be loaded");
-    }
-    return data;
-  },
-);
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState: defaultState,
   reducers: {
-    addToCart: (state, action) => {
-      state.amount += 1;
-      let newProduct = action.payload
-      state.cartItems.push(newProduct)
+    addItem: (state, action) => {
+      console.log(action.payload);
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchItems.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchItems.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.cartItems = action.payload;
-      })
-      .addCase(fetchItems.rejected, (state) => {
-        state.isLoading = false;
-      });
+    clearCart: (state, action) => {},
+    removeItem: (state, action) => {},
+    editItem: (state, action) => {},
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const {addItem,clearCart,editItem,removeItem} = cartSlice.actions;
 export default cartSlice.reducer;

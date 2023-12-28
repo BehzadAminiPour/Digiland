@@ -5,6 +5,9 @@ import { getProducts } from "../services/apiProducts";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { generateAmountOptions } from "../utils";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
+
 //Loader
 export const loader = async ({ params }) => {
   const response = await getProducts();
@@ -21,6 +24,18 @@ export default function SingleProduct() {
   };
   const { img, title, price, description, company } = products;
 
+  const cartProduct = {
+    productId: products.id,
+    img,
+    title,
+    price,
+    company,
+  };
+
+  const dispatch = useDispatch();
+  const addToCart = ()=>{
+    dispatch(addItem({product:cartProduct}))
+  }
   return (
     <section>
       <div className="text-md breadcrumbs">
@@ -80,7 +95,7 @@ export default function SingleProduct() {
           </div>
           {/* CART BTN */}
           <div className="mt-10">
-            <button className="btn btn-secondary btn-md">
+            <button className="btn btn-secondary btn-md" onClick={addToCart}>
               اضافه کن به سبد
             </button>
           </div>
