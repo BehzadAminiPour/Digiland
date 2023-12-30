@@ -8,8 +8,9 @@ export const loader = async ({ request }) => {
     ...new URL(request.url).searchParams.entries(),
   ]);
 
-  const products = await getProducts();
-  return { products , params };
+  const products = await getProducts(params);
+console.log(products)
+  return { products, params };
 };
 
 export default function Products() {

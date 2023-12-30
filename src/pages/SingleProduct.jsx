@@ -22,14 +22,15 @@ export default function SingleProduct() {
   const handleAmount = (e) => {
     setAmount(parseInt(e.target.value));
   };
-  const { img, title, price, description, company } = products;
+  const { img, title, price, description, company ,id} = products;
 
   const cartProduct = {
-    productId: products.id,
+    id,
     img,
     title,
     price,
     company,
+    amount
   };
 
   const dispatch = useDispatch();
@@ -90,7 +91,7 @@ export default function SingleProduct() {
               value={amount}
               onChange={handleAmount}
             >
-              {generateAmountOptions(10)}
+              {generateAmountOptions(5)}
             </select>
           </div>
           {/* CART BTN */}

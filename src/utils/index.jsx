@@ -19,6 +19,10 @@
 //   }
 // }
 // console.log(getProducts())
+
+
+
+
 export const generateAmountOptions = (number) => {
   return Array.from({ length: number }, (_, index) => {
     const amount = index + 1;
