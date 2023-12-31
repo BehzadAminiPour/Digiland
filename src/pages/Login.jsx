@@ -1,7 +1,50 @@
+/* eslint-disable react-refresh/only-export-components */
 import { FormInput, SubmitBtn } from "../components";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect, useNavigate } from "react-router-dom";
+import { customFetch } from "../utils";
+import { toast } from "react-toastify";
+import { loginUser } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
+
+export const action =
+  (store) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await customFetch.post("/auth/local", data);
+      store.dispatch(loginUser(response.data));
+      toast.success("ورود با موفقیت انجام شد");
+      return redirect("/");
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.error?.message ||
+        "لطفا اطلاعات خود را دوباره چک کنید";
+      toast.error(errorMessage);
+      return null;
+    }
+  };
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const loginAsGuestUser = async () => {
+    try {
+      const response = await customFetch.post("/auth/local", {
+        identifier: "test@test.com",
+        password: "secret",
+      });
+      dispatch(loginUser(response.data));
+      toast.success("خوش اومدی کاربر مهمان");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("خطا در ورود کاربر مهمان .لطفا دوباره تلاش کنید");
+    }
+  };
+
   return (
     <section className="grid h-screen place-items-center">
       <Form
@@ -14,7 +57,11 @@ export default function Login() {
         <div className="mt-4">
           <SubmitBtn text="ورود" />
         </div>
-        <button type="button" className="btn btn-secondary btn-block">
+        <button
+          onClick={loginAsGuestUser}
+          type="button"
+          className="btn btn-secondary btn-block"
+        >
           ورود مهمان
         </button>
         <p className="text-center">

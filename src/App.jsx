@@ -2,12 +2,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   About,
   Cart,
-  Checkout,
   Error,
   HomeLayout,
   Landing,
   Login,
-  Orders,
   Products,
   Register,
   SingleProduct,
@@ -20,9 +18,10 @@ import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
 
-
 //actions
-
+import { action as registerAction } from "./pages/Register";
+import { action as loginAction } from "./pages/Login";
+import { store } from "./store";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,15 +48,22 @@ const router = createBrowserRouter([
       },
       { path: "cart", element: <Cart /> },
       { path: "about", element: <About /> },
-      { path: "checkout", element: <Checkout /> },
-      { path: "orders", element: <Orders /> },
     ],
   },
-  { path: "/login", element: <Login />, errorElement: <Error /> },
-  { path: "/register", element: <Register />, errorElement: <Error /> },
+  {
+    path: "/login",
+    element: <Login />,
+    errorElement: <Error />,
+    action: loginAction(store),
+  },
+  {
+    path: "/register",
+    element: <Register />,
+    errorElement: <Error />,
+    action: registerAction,
+  },
 ]);
 function App() {
- 
   return <RouterProvider router={router} />;
 }
 

@@ -1,5 +1,27 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
 import { FormInput, SubmitBtn } from "../components";
-import { Form, Link } from "react-router-dom";
+import { Form, Link , redirect } from "react-router-dom";
+import { customFetch } from '../utils';
+import { toast } from 'react-toastify';
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  try {
+    const response = await customFetch.post('/auth/local/register', data);
+    toast.success('ثبت نام با موفقیت انجام شد');
+    return redirect('/login');
+  } catch (error) {
+    const errorMessage =
+      error?.response?.data?.error?.message ||
+      "لطفا اطلاعات خود را دوباره چک کنید";
+    toast.error(errorMessage);
+    return null;
+  }
+};
+
 
 export default function Register() {
   return (

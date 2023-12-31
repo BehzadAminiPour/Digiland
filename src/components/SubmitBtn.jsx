@@ -12,7 +12,7 @@ export default function SubmitBtn({ text }) {
       {isSubmitting ? (
         <>
           <span className="loading loading-spinner"></span>
-          sending...
+          منتظر بمانید ...
         </>
       ) : (
         text || "submit"
