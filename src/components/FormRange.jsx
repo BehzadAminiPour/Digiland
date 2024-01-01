@@ -7,7 +7,7 @@ const FormRange = ({ label, name, size, price }) => {
 
   return (
     <div className='form-control'>
-      <label htmlFor={name} className='label cursor-pointer'>
+      <label htmlFor={name} className='label cursor-pointer mt-2'>
         <span className='label-text capitalize'>{label}</span>
         <span>{selectedPrice}</span>
       </label>

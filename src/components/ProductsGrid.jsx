@@ -23,7 +23,7 @@ export default function ProductsGrid() {
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title text-base tracking-wider">{title}</h2>
-              <span className="text-secondary">{price} تومان</span>
+              <span className="text-primary">{price} تومان</span>
             </div>
           </Link>
         );

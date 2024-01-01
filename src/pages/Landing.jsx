@@ -8,7 +8,7 @@ import FeaturedProduct from "../components/FeaturedProduct";
 
 export const loader = async () => {
   const products = await getProducts();
-  // const featuredProduct = products.filter((product) => product.new === true);
+
   return {products};
 };
 

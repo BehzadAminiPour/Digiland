@@ -9,7 +9,8 @@ export const loader = async ({ request }) => {
   ]);
 
   const products = await getProducts(params);
-console.log(products)
+// console.log(params)
+// console.log(products)
   return { products, params };
 };
 

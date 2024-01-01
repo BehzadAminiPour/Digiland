@@ -11,21 +11,21 @@ export default function Questions({ question }) {
     <div className="mx-auto my-3 max-w-3xl">
       <div className=" rounded-md border-2 p-3 mx-2">
         <div className="flex justify-between  ">
-          <h4 className="mr-2 text-sm font-semibold text-stone-600">
+          <h4 className="mr-2 text-sm font-semibold ">
             {question.title}
           </h4>
           <span className="ml-1" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? (
-              <LuMinusCircle size={24} />
+              <LuMinusCircle size={24}  />
             ) : (
-              <LuPlusCircle size={24} color="#EF4444" />
+              <LuPlusCircle size={24} className="text-primary" />
             )}
           </span>
         </div>
 
         <div>
           {isOpen && (
-            <p className="mt-1 text-sm text-gray-500">{question.answer}</p>
+            <p className="mt-1 text-sm text-secondary">{question.answer}</p>
           )}
         </div>
       </div>

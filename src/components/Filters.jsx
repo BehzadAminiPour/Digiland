@@ -6,10 +6,9 @@ import FormRange from "./FormRange";
 export default function Filters() {
   const { params } = useLoaderData();
   const { search, company, price } = params;
-  // console.log(company,price);
   const list = ["همه","samsung", "xiaomi", "apple"];
   return (
-    <Form className="grid items-center gap-x-4 gap-y-8 rounded-md bg-base-200  px-8 py-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <Form className="grid items-center gap-x-4 gap-y-8 rounded-md bg-base-200  px-8 py-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
       {/* SEARCH */}
       <FormInput
         type="search"
@@ -37,12 +36,12 @@ export default function Filters() {
       />
 
       {/* BUTTONS */}
-      <Link to="/products" className="btn btn-accent btn-sm">
-        پاک کردن
-      </Link>
-      <button type="submit" className="btn btn-primary btn-sm">
+      <button type="submit" className="btn btn-primary btn-sm sm:mt-5 md:mt-0">
         جستجو
       </button>
+      <Link to="/products" className="btn btn-secondary btn-sm">
+        پاک کردن
+      </Link>
     </Form>
   );
 }
