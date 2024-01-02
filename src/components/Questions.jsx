@@ -14,7 +14,7 @@ export default function Questions({ question }) {
           <h4 className="mr-2 text-sm font-semibold ">
             {question.title}
           </h4>
-          <span className="ml-1" onClick={() => setIsOpen(!isOpen)}>
+          <span className="ml-1 cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? (
               <LuMinusCircle size={24}  />
             ) : (

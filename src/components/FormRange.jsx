@@ -2,9 +2,10 @@
 import { useState } from 'react';
 const FormRange = ({ label, name, size, price }) => {
   const step = 1000000;
-  const maxPrice = 1000000000;
+  const minPrice=5000000;
+  const maxPrice = 100000000;
   const [selectedPrice, setSelectedPrice] = useState(price || maxPrice);
-
+  
   return (
     <div className='form-control'>
       <label htmlFor={name} className='label cursor-pointer mt-2'>
@@ -15,16 +16,17 @@ const FormRange = ({ label, name, size, price }) => {
         style={{direction:"ltr"}}
         type='range'
         name={name}
-        min={5000000}
+        min={minPrice}
         max={maxPrice}
         value={selectedPrice}
         onChange={(e) => setSelectedPrice(e.target.value)}
         className={`range range-primary ${size}`}
         step={step}
+
       />
       <div className='w-full flex justify-between text-xs px-2 mt-2'>
-        <span className='font-bold text-md'>حداقل : 5000000</span>
-        <span className='font-bold text-md'>حداکثر : {maxPrice}</span>
+        <span className=' text-md'>حداقل : 5,000,000</span>
+        <span className=' text-md'>حداکثر : {maxPrice.toLocaleString()}</span>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export default function CartTotals() {
         {/* SUBTOTAL */}
         <p className='flex flex-col items-center  text-sm mt-4 pb-2'>
           <span > مجموع  سفارشات : </span>
-          <span className='font-medium mt-2'> {cartTotal} تومان </span>
+          <span className='font-medium mt-2'> {cartTotal.toLocaleString()} تومان </span>
         </p>
       </div>
     </div>

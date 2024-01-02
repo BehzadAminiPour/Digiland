@@ -52,8 +52,8 @@ export default function Login() {
         className="card flex w-80 flex-col gap-y-4 bg-base-100 p-8 shadow-lg sm:w-96"
       >
         <h4 className="text-center text-3xl font-bold">ورود</h4>
-        <FormInput type="email" label="ایمیل" name="identifier" />
-        <FormInput type="password" label="رمز ورود" name="password" />
+        <FormInput type="email" label="ایمیل" name="identifier" required={true}/>
+        <FormInput type="password" label="رمز ورود" name="password" required={true}/>
         <div className="mt-4">
           <SubmitBtn text="ورود" />
         </div>
@@ -73,6 +73,12 @@ export default function Login() {
             عضویت
           </Link>
         </p>
+        <Link
+          to="/"
+          className="link-hover link link-secondary text-center text-sm"
+        >
+          بازگشت به خانه
+        </Link>
       </Form>
     </section>
   );

@@ -22,7 +22,7 @@ export default function SingleProduct() {
   const handleAmount = (e) => {
     setAmount(parseInt(e.target.value));
   };
-  const { img, title, price, description, company ,id} = products;
+  const { img, title, price, description, company, id } = products;
 
   const cartProduct = {
     id,
@@ -30,13 +30,13 @@ export default function SingleProduct() {
     title,
     price,
     company,
-    amount
+    amount,
   };
 
   const dispatch = useDispatch();
-  const addToCart = ()=>{
-    dispatch(addItem({product:cartProduct}))
-  }
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
   return (
     <section>
       <div className="text-md breadcrumbs">
@@ -59,21 +59,18 @@ export default function SingleProduct() {
         />
         {/* PRODUCT */}
         <div>
-          <h1 className="text-3xl font-bold capitalize">{title}</h1>
-          <h4 className="mt-2 text-xl font-bold text-neutral-content">
+          <h1 className="text-2xl font-bold capitalize">{title}</h1>
+          <h4 className="mt-3 text-lg font-semibold text-secondary">
             شرکت : {company}
           </h4>
-          <p className="mt-3 text-xl">قیمت : {price} تومان</p>
-          <h4 className="mt-6 text-xl font-bold text-neutral-content">
-            مشخصات :
-          </h4>
+          <p className="mt-3 text-xl">قیمت : {price.toLocaleString()} تومان</p>
+          <h4 className="mt-6 text-xl font-bold text-accent">مشخصات :</h4>
           <p className="mt-3 leading-8">
             {readMore ? description : `${description.substring(0, 200)} `}
             <button
               className="font-bold text-primary"
               onClick={() => setReadMore(!readMore)}
             >
-              {" "}
               {readMore ? "کمتر" : "بیشتر"} ...
             </button>
           </p>
@@ -96,7 +93,7 @@ export default function SingleProduct() {
           </div>
           {/* CART BTN */}
           <div className="mt-10">
-            <button className="btn btn-secondary btn-md" onClick={addToCart}>
+            <button className="btn btn-primary btn-md" onClick={addToCart}>
               اضافه کن به سبد
             </button>
           </div>

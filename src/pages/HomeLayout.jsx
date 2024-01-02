@@ -12,7 +12,7 @@ export default function HomeLayout() {
       {isPageLoading ? (
         <Loading />
       ) : (
-        <section className="align-element py-20">
+        <section className="align-element pt-4 pb-20">
           <Outlet />
         </section>
       )}

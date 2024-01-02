@@ -16,6 +16,7 @@ export default function Filters() {
         name="search"
         size="input-sm"
         defaultValue={search}
+        required={false}
       />
 
       {/* COMPANIES */}

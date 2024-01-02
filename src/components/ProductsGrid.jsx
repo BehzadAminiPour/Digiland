@@ -1,8 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 export default function ProductsGrid() {
-  const { products} = useLoaderData();
- 
+  const { products } = useLoaderData();
+
   return (
     <div className="grid gap-4 pt-12 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => {
@@ -23,7 +23,9 @@ export default function ProductsGrid() {
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title text-base tracking-wider">{title}</h2>
-              <span className="text-primary">{price} تومان</span>
+              <span className="text-primary">
+                {price.toLocaleString()} تومان
+              </span>
             </div>
           </Link>
         );
