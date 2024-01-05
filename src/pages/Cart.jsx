@@ -10,7 +10,7 @@ export default function Cart() {
     return (
       <>
         <SectionTitle text="سبد خرید شما خالی است !" />
-        <div className="mb-64 mt-4 text-center">
+        <div className="mb-56 mt-4 text-center">
           <Link to="/products" className="btn btn-primary btn-sm">
             برو به محصولات
           </Link>

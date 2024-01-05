@@ -55,7 +55,7 @@ const CartItem = ({ cartItem }) => {
         </div>
         {/* REMOVE */}
         <button
-          className='mt-2 link link-primary link-hover text-sm'
+          className='mt-2 link link-accent link-hover text-sm'
           onClick={removeItemFromTheCart}
         >
           حذف
@@ -63,7 +63,7 @@ const CartItem = ({ cartItem }) => {
       </div>
 
       {/* PRICE */}
-      <p className='font-medium sm:ml-auto'> قیمت واحد : {price.toLocaleString()} تومان</p>
+      <p className='font-medium text-sm sm:ml-auto'> قیمت واحد : {price.toLocaleString()} تومان</p>
     </article>
   );
 };
